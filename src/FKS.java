@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -51,58 +52,23 @@ class FKS {
 	
 	@Order(1)
 	@Test
-	void Clanstvo() throws InterruptedException {
+	@DisplayName("Baby Clanstvo Test")
+	void BabyClanstvo() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) webDriver;
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[7]/a")).click();
 		Thread.sleep(2000);
-		webDriver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/a")).click();
+		WebElement baby = webDriver.findElement(By.xpath("/html/body/main/section[2]/div[1]/div/div[3]/a"));
+		js.executeScript("arguments[0].scrollIntoView(true);", baby);
 		Thread.sleep(1000);
-		webDriver.navigate().back();
+		WebElement babyCijena = webDriver.findElement(By.xpath("/html/body/main/section[2]/div[1]/div/div[3]/a/h5"));
+		assertEquals("BABY (39,90KM)", babyCijena.getText());
 	}
-	
-	/*@Order(2)
-	@Test
-	void ClanarinaPrijava() throws InterruptedException {
-		webDriver.get(baseUrl);
-		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[7]/a")).click();
-		Thread.sleep(2000);
-		webDriver.findElement(By.xpath("/html/body/main/section[1]/div/div[1]/div[1]/div/a[2]")).click();
-		WebElement ime = webDriver.findElement(By.xpath("//*[@id=\"firstName\"]"));
-		WebElement prezime = webDriver.findElement(By.xpath("//*[@id=\"lastName\"]"));
-		ime.sendKeys("Ahmo");
-		Thread.sleep(2000);
-		prezime.sendKeys("Ahmic");
-		Thread.sleep(2000);
-		Select mjesec = new Select(webDriver.findElement(By.xpath("//*[@id=\"month\"]")));
-		mjesec.selectByValue("1");
-		Thread.sleep(2000);
-		WebElement dan = webDriver.findElement(By.xpath("//*[@id=\"day\"]"));
-		Thread.sleep(2000);
-		WebElement godina = webDriver.findElement(By.xpath("//*[@id=\"year\"]"));
-		dan.sendKeys("1");
-		Thread.sleep(2000);
-		godina.sendKeys("1946");
-		Thread.sleep(2000);
-		WebElement musko = webDriver.findElement(By.id("male"));
-		musko.click();
-		Thread.sleep(2000);
-		WebElement broj = webDriver.findElement(By.xpath("//*[@id=\"cellphone\"]"));
-		broj.sendKeys("061 111 111");
-		Thread.sleep(2000);
-		WebElement emailClanstvo = webDriver.findElement(By.xpath("//*[@id=\"email\"]"));
-		emailClanstvo.sendKeys("ahmoahmic@gmail.com");
-		Thread.sleep(2000);
-		webDriver.findElement(By.xpath("//*[@id=\"place-municipality\"]/div/div[1]/div/div")).click();
-		WebElement opstina = webDriver.findElement(By.xpath("//*[@id=\"place-municipality\"]/div/div[2]/input"));
-		opstina.sendKeys("Novi Grad Sarajevo");
-		Thread.sleep(2000);
-		@ParameterizedTest
-		@CsvFileSource(resources = ".csv")
 
-	}*/
 	
 	@Order(2)
 	@Test
+	@DisplayName("Login Test")
 	void Prijava() throws InterruptedException {
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"header-top\"]/div/div[1]/a[5]")).click();
@@ -120,13 +86,12 @@ class FKS {
 	    webDriver.findElement(By.xpath("//*[@id=\"header-top\"]/div/div[1]/div/button")).click();
 	    Thread.sleep(1000);
 	    webDriver.findElement(By.xpath("//*[@id=\"header-top\"]/div/div[1]/div/ul/li[3]/a")).click();
-	    String url = webDriver.getCurrentUrl();
 	    Thread.sleep(1000);
-
 	}
 	
 	@Order(3)
 	@Test
+	@DisplayName("Karte Test")
 	void Karte() throws InterruptedException {
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[5]/button")).click();
@@ -139,12 +104,11 @@ class FKS {
 		Thread.sleep(1000);
 	}
 	
-	
-	
 
 	@Order(4)
 	@Test
-	void igraci() throws InterruptedException{
+	@DisplayName("Igraci Test")
+	void Igraci() throws InterruptedException{
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[3]/button")).click();
 		Thread.sleep(1000);
@@ -157,6 +121,7 @@ class FKS {
 	
 	@Order(5)
 	@Test
+	@DisplayName("Performanse Stranice Test")
 	  public void testPagePerformance() {
 		webDriver.get(baseUrl);
 		webDriver.manage().window().maximize();
@@ -172,7 +137,8 @@ class FKS {
 	
 	@Order(6)
 	@Test
-	void tesFluent() {
+	@DisplayName("Fluent Test")
+	void testFluent() {
 		webDriver.get(baseUrl);
 		webDriver.manage().window().maximize();
 
@@ -194,6 +160,7 @@ class FKS {
 	
 	@Order(7)
 	@Test
+	@DisplayName("Vijesti Test")
 	void Vijesti() throws InterruptedException {
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"highlighted-news\"]/div[1]/div[2]/a/div[2]")).click();
@@ -205,6 +172,7 @@ class FKS {
 	
 	@Order(8)
 	@Test
+	@DisplayName("WebShop Dresovi Test")
 	void webShopKonfiguratorDresa() throws InterruptedException{
 		webDriver.get(baseUrl);
 		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[9]/a")).click();
@@ -233,7 +201,8 @@ class FKS {
 	
 	@Order(9)
 	@Test
-	void testFanShopPrice() throws InterruptedException {
+	@DisplayName("FanShop Test")
+	void FanShopPrice() throws InterruptedException {
 		webDriver.get(baseUrl);
 		webDriver.manage().window().maximize();
 		Thread.sleep(1000);
@@ -250,13 +219,14 @@ class FKS {
 		
 		String cijena = webDriver.findElement(By.xpath("/html/body/main/section[4]/div/div/div/div[2]/div/div/form/div[6]/span[1]")).getText();
 		System.out.println(cijena);
-		//Akcija je trenutno dresova pa je cijena 922 umjesto 1140, ne brinite ako vam izbaci error
+		//Akcija je trenutno dresova pa je cijena 922 umjesto 1140
 		assertEquals("1140.00 BAM", cijena);
 		}
 	
 	@Order(10)
 	@Test
-	void testAkademijaPositiveAndNegative() throws InterruptedException {
+	@DisplayName("Akademija Test")
+	void AkademijaPositiveAndNegative() throws InterruptedException {
 	webDriver.get(baseUrl);
 	webDriver.manage().window().maximize();
 	
@@ -280,7 +250,8 @@ class FKS {
 	
 	@Order(11)
 	@Test
-	void testSocialMediaLinks() throws InterruptedException {
+	@DisplayName("Drustvene mreze Test")
+	void SocialMediaLinks() throws InterruptedException {
 
 	webDriver.get(baseUrl);
 	webDriver.manage().window().maximize();
@@ -294,6 +265,8 @@ class FKS {
     } catch (Exception e) {
         System.out.println(url + " is not working. ");
     }
+    String link = webDriver.getCurrentUrl();
+    assertEquals("https://www.facebook.com/FudbalskiklubSarajevo/", link);
     Thread.sleep(1000);
     webDriver.navigate().back();
     Thread.sleep(3000);
@@ -307,6 +280,8 @@ class FKS {
     } catch (Exception e) {
         System.out.println(url1 + " is not working. ");
     }
+    String link2 = webDriver.getCurrentUrl();
+    assertEquals("https://www.instagram.com/fk_sarajevo/", link2);
     Thread.sleep(1000);
     webDriver.navigate().back();
     Thread.sleep(3000);
@@ -320,6 +295,8 @@ class FKS {
     } catch (Exception e) {
         System.out.println(url2 + " is not working. ");
     }
+    String link3 = webDriver.getCurrentUrl();
+    assertEquals("https://twitter.com/FK_Sarajevo", link3);
     Thread.sleep(1000);
     webDriver.navigate().back();
     Thread.sleep(3000);
@@ -333,7 +310,113 @@ class FKS {
     } catch (Exception e) {
         System.out.println(url3 + " is not working. ");
     }
-}
+    String link4 = webDriver.getCurrentUrl();
+    assertEquals("https://www.youtube.com/footballclubsarajevo", link4);
+    Thread.sleep(1000);
+	}
+	
+	@Order(12)
+	@Test
+	@DisplayName("Bordo TV Test")
+	void bordoTv() throws InterruptedException {
+		webDriver.get(baseUrl);
+		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[8]/a")).click();
+		Thread.sleep(500);
+		webDriver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div/a")).click();
+		Thread.sleep(500);
+		System.out.println(webDriver.getTitle());
+		assertEquals("Bordo TV: 76. GODINA BORDO KLUBA - FK SARAJEVO SLAVI ROĐENDAN - fksarajevo.ba", webDriver.getTitle());
+		Thread.sleep(500);
+	}
+	
+	@Order(13)
+	@Test
+	@DisplayName("Rezultati Kluba Test")
+	void rezultatTabela() throws InterruptedException {
+		webDriver.get(baseUrl);
+		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[4]/button")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[4]/ul/li[2]/a")).click();
+		Thread.sleep(1000);
+		WebElement prviNaTabeli = webDriver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/table/tbody/tr[1]"));
+		String klub = prviNaTabeli.getText();
+		assertFalse(klub.contains("Sarajevo"));
+		assertTrue(klub.contains("Zrinjski"));
+	}
+	
+	@Order(14)
+	@Test
+	@DisplayName("Clanarina Prijava Test")
+	void clanarinaPrijava() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) webDriver;
+		webDriver.get(baseUrl);
+		webDriver.findElement(By.xpath("//*[@id=\"navbarSupportedContent\"]/ul/li[7]/a")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("/html/body/main/section[1]/div/div[1]/div[1]/div/a[1]")).click();
+		WebElement ime = webDriver.findElement(By.xpath("//*[@id=\"firstName\"]"));
+		WebElement prezime = webDriver.findElement(By.xpath("//*[@id=\"lastName\"]"));
+		ime.sendKeys("Ahmo");
+		Thread.sleep(500);
+		prezime.sendKeys("Ahmic");
+		Thread.sleep(500);
+		Select mjesec = new Select(webDriver.findElement(By.xpath("//*[@id=\"month\"]")));
+		mjesec.selectByValue("1");
+		Thread.sleep(500);
+		WebElement dan = webDriver.findElement(By.xpath("//*[@id=\"day\"]"));
+		Thread.sleep(500);
+		WebElement godina = webDriver.findElement(By.xpath("//*[@id=\"year\"]"));
+		dan.sendKeys("1");
+		Thread.sleep(500);
+		godina.sendKeys("1946");
+		Thread.sleep(500);
+		//Ovo nije radilo
+		WebElement musko = webDriver.findElement(By.xpath("/html/body/main/div[1]/div[2]/div[2]/form/section/div[2]/div[4]/div/div[1]/label"));
+		musko.click();
+		Thread.sleep(500);
+		WebElement broj = webDriver.findElement(By.xpath("//*[@id=\"cellphone\"]"));
+		broj.sendKeys("061 111 111");
+		Thread.sleep(500);
+		WebElement emailClanstvo = webDriver.findElement(By.xpath("//*[@id=\"email\"]"));
+		emailClanstvo.sendKeys("ahmoahmic@gmail.com");
+		Thread.sleep(500);
+		webDriver.findElement(By.xpath("//*[@id=\"address\"]")).sendKeys("Bulevar MeÅ¡e SelimoviÄ‡a 97");
+		Thread.sleep(500);
+		webDriver.findElement(By.xpath("//*[@id=\"zip\"]")).sendKeys("71000");
+		Thread.sleep(500);
+		webDriver.findElement(By.xpath("/html/body/main/div[1]/div[2]/div[2]/form/section/div[4]/div[2]/div")).click();
+		Thread.sleep(500);
+		webDriver.findElement(By.xpath("/html/body/main/div[1]/div[2]/div[2]/form/section/div[4]/div[2]/div/div[2]/div/div[3]")).click();
+		Thread.sleep(500);
+		webDriver.findElement(By.linkText("(opširnije)"));
+		Thread.sleep(500);
+		js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		Thread.sleep(2000);
+		webDriver.findElement(By.xpath("/html/body/main/div[1]/div[2]/div[2]/form/section/button")).click();
+		Thread.sleep(1000);
+		webDriver.findElement(By.xpath("//*[@id=\"hideModalAndNext\"]")).click();
+		Thread.sleep(2000);
+		webDriver.findElement(By.xpath("//*[@id=\"payment_form\"]/section/div[2]/div[2]/div")).click();
+		String cijena = webDriver.findElement(By.className("price-info")).getText();
+		Thread.sleep(2000);
+		assertEquals("15",cijena);
+	
+	}
+ 	
+	
+	@Order(15)
+	@Test
+	@DisplayName("Sponzor Errea Test")
+	void SponzorErrea() throws InterruptedException {
+		webDriver.get(baseUrl); 
+		WebElement erreaLink = webDriver.findElement(By.xpath("/html/body/nav/div/div[1]/a[2]"));
+	    String url = erreaLink.getAttribute("href");
+		webDriver.navigate().to(url + "/world/sponsorship");
+		webDriver.get(url + "/world/sponsorship"); 
+		String source = webDriver.getPageSource();
+		System.out.print(source);
+		assertTrue(source.contains("FK SARAJEVO"));
+		Thread.sleep(1000);
+	}
 	
 	
 	
