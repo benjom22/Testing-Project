@@ -1,7 +1,7 @@
 # FK Sarajevo Web Page Testing with Java
 
 This repository contains automated tests for testing the functionalities of the FK Sarajevo web page using Selenium with Java. 
-This project was done for purpose of Software verification, validationa and testing class on International Burch University.
+This project was done for purpose of Software verification, validation and testing class on International Burch University.
 
 ## Purpose
 
